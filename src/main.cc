@@ -1,6 +1,8 @@
 #include <iostream>
 #include <getopt.h>
 #include <string.h>
+#include "sort.hpp"
+
 
 int main(int argc, char *argv[]){
 
@@ -30,8 +32,25 @@ int main(int argc, char *argv[]){
         }
     }
 
+    std::ifstream input_file(input);
+
+    erroAssert(input_file.is_open(), "Arquivo de entrada não encontrado");
     
+    int num_arrays,tam;
+    int i = 0;
+    input_file >> num_arrays;
+
+    Sort *arrays[num_arrays];
+
+    while(!input_file.eof()){
+        input_file >> tam;
+        erroAssert(tam > 0, "Tamanho do array inválido");
+        arrays[i] = new Sort(seed, tam);
+        arrays[i]->randomArrays();
+        i++;
+    }
+
+    input_file.close();
 
     return 0;
-
 }
