@@ -1,6 +1,5 @@
 #include <iostream>
 #include <getopt.h>
-#include <string.h>
 #include "sort.hpp"
 
 
@@ -43,6 +42,7 @@ int main(int argc, char *argv[]){
     Sort *arrays[num_arrays];
 
     while(!input_file.eof()){
+        std::cout << i << std::endl;
         input_file >> tam;
         erroAssert(tam > 0, "Tamanho do array inválido");
         arrays[i] = new Sort(seed, tam);
@@ -52,5 +52,10 @@ int main(int argc, char *argv[]){
 
     input_file.close();
 
+    arrays[0]->selectionQuickSort(0, arrays[0]->getNumberElements() - 1, 100);
+    //arrays[0]->recursiveQuickSort(0, arrays[0]->getNumberElements() - 1);
+    arrays[0]->printArray();
+
     return 0;
 }
+

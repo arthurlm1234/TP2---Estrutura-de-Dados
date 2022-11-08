@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <string.h>
 #include "msgassert.hpp"
 
 class Sort{
@@ -14,10 +15,12 @@ public:
     void selectionQuickSort(int left, int right, int k);
     void noRecursiveQuickSort();
     void stackSmartQuickSort();
+    void printArray();
+    int getNumberElements();
 
 private:
     struct Data{
-        uint64_t key;
+        int key;
         char strings[15][200];
         int numbers[10];
     };
