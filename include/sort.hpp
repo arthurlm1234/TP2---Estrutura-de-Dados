@@ -15,9 +15,10 @@ private:
     Data *elements = nullptr;
     long unsigned int numberElements;
     int seed;
+    std::string output;
 
 public:
-    Sort(int _seed, int _numberElements);
+    Sort(int _seed = 1, int _numberElements = 1, std::string _output = "A");
     ~Sort();
     void randomArrays();
     void recursiveQuickSort(int left, int right);

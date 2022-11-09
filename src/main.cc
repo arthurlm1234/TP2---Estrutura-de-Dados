@@ -2,7 +2,6 @@
 #include <getopt.h>
 #include "clock.hpp"
 
-
 int main(int argc, char *argv[]){
 
     int opt, type, seed, median, partition;
@@ -32,35 +31,36 @@ int main(int argc, char *argv[]){
     }
 
     std::ifstream input_file(input);
+    std::ofstream outputFile(output);
 
     erroAssert(input_file.is_open(), "Arquivo de entrada não encontrado");
     
     int num_arrays,tam;
     input_file >> num_arrays;
 
-    Sort *array = new Sort(0,0);
+    Sort *array = new Sort;
 
     while(!input_file.eof()){
         input_file >> tam;
         erroAssert(tam > 0, "Tamanho do array inválido");
-        array = new Sort(seed, tam);
+        array = new Sort(seed, tam, output);
         array->randomArrays();
         
         switch(type){
             case 1:
-                clockRecursiveQuickSort(*array);
+                clockRecursiveQuickSort(*array, output);
                 break;
             case 2:
-                clockMedianQuickSort(*array, median);
+                clockMedianQuickSort(*array, median, output);
                 break;
             case 3:
-                clockSelectionQuickSort(*array, partition);
+                clockSelectionQuickSort(*array, partition, output);
                 break;
             case 4:
-                clockNoRecursiveQuickSort(*array);
+                clockNoRecursiveQuickSort(*array, output);
                 break;
             case 5:
-                clockStackSmartQuickSort(*array);
+                clockStackSmartQuickSort(*array, output);
                 break;
             default:
                 erroAssert(false, "Opcão inválida!");

@@ -1,8 +1,10 @@
 #include "sort.hpp"
 
-Sort::Sort(int _seed, int _numberElements){
+
+Sort::Sort(int _seed, int _numberElements, std::string _output){
     seed = _seed;
     numberElements = _numberElements;
+    output = _output;
     elements = new Data[numberElements];
 }
 
