@@ -6,6 +6,10 @@ Sort::Sort(int _seed, int _numberElements){
     elements = new Data[numberElements];
 }
 
+Sort::~Sort(){
+    delete[] elements;
+}
+
 int Sort::getNumberElements(){
     return numberElements;
 }
@@ -13,11 +17,16 @@ int Sort::getNumberElements(){
 void Sort::randomArrays(){
     srand(seed);
     for(int i = 0; i < numberElements; i++){
-        elements[i].key = rand() % 10000;
+        elements[i].key = rand() % 1000000;
     }
 }
 
 void Sort::recursiveQuickSort(int left, int right){
+    struct rusage resources;
+
+    double utime, stime, total_time;
+
+    
     int i = left, j = right;
     Data tmp;
     Data pivot = elements[(left + right) / 2];
@@ -40,6 +49,13 @@ void Sort::recursiveQuickSort(int left, int right){
         recursiveQuickSort(left, j);
     if(i < right)
         recursiveQuickSort(i, right);
+    
+    getrusage(RUSAGE_SELF, &resources);
+    utime = resources.ru_utime.tv_sec + resources.ru_utime.tv_usec / 1000000.0;
+    stime = resources.ru_stime.tv_sec + resources.ru_stime.tv_usec / 1000000.0;
+    total_time = utime + stime;
+    //std::cout << "Tempo de execução: " << total_time << std::endl;
+
 }
 
 void Sort::medianQuickSort(int left, int right, int k){
@@ -78,31 +94,73 @@ void Sort::medianQuickSort(int left, int right, int k){
         recursiveQuickSort(i, right);
 }
 
-void Sort::noRecursiveQuickSort(){
-    int left = 0, right = numberElements - 1;
+int Sort::partition(int left, int right){
+    Data pivot = elements[right];
     int i, j;
-    Data tmp;
-    Data pivot = elements[(left + right) / 2];
+    i = left;
+    j = left;
 
-    while(left < right){
-        i = left;
-        j = right;
-        while(i <= j){
-            tmp = elements[i];
+    for(int i = left; i < right; i++){
+        if(elements[i].key <= pivot.key){
+            Data tmp = elements[i];
             elements[i] = elements[j];
             elements[j] = tmp;
-
-            i++;
-            j--;
-            }
+            j++;
         }
-        if(i < right)
-            left = i;
-        if(j > left)
-            right = j;
     }
 
+    Data tmp = elements[j];
+    elements[j] = elements[right];
+    elements[right] = tmp;
+
+    return j;
+}
+
+
+void Sort::noRecursiveQuickSort(){
+    
+    struct rusage resources;
+
+    double utime, stime, total_time;
+
+    int left = 0;
+    int right = numberElements - 1;
+    int stack[right - left + 1];
+    int top = -1;
+
+    stack[++top] = left;
+    stack[++top] = right;
+
+    while(top >= 0){
+        right = stack[top--];
+        left = stack[top--];
+
+        int p = partition(left, right);
+
+        if(p - 1 > left){
+            stack[++top] = left;
+            stack[++top] = p - 1;
+        }
+
+        if(p + 1 < right){
+            stack[++top] = p + 1;
+            stack[++top] = right;
+        }
+    }
+
+    getrusage(RUSAGE_SELF, &resources);
+    utime = resources.ru_utime.tv_sec + resources.ru_utime.tv_usec / 1000000.0;
+    stime = resources.ru_stime.tv_sec + resources.ru_stime.tv_usec / 1000000.0;
+    total_time = utime + stime;
+    //std::cout << "Tempo de execução: " << total_time << std::endl;
+}
+    
+
 void Sort::selectionQuickSort(int left, int right, int k){
+    struct rusage resources;
+
+    double utime, stime, total_time;
+    
     int i = left, j = right;
     Data tmp;
 
@@ -148,6 +206,9 @@ void Sort::printArray(){
     }
 }
 
+
+
+//iterative quicksort, process first
 
 
 

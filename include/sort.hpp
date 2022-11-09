@@ -4,11 +4,21 @@
 #include <iostream>
 #include <fstream>
 #include <string.h>
+#include <sys/resource.h>
+#include "data.hpp"
 #include "msgassert.hpp"
 
 class Sort{
+
+private:
+
+    Data *elements = nullptr;
+    long unsigned int numberElements;
+    int seed;
+
 public:
     Sort(int _seed, int _numberElements);
+    ~Sort();
     void randomArrays();
     void recursiveQuickSort(int left, int right);
     void medianQuickSort(int left, int right, int k);
@@ -16,18 +26,9 @@ public:
     void noRecursiveQuickSort();
     void stackSmartQuickSort();
     void printArray();
+    int partition(int left, int right);
     int getNumberElements();
 
-private:
-    struct Data{
-        int key;
-        char strings[15][200];
-        int numbers[10];
-    };
-
-    Data *elements = nullptr;
-    long unsigned int numberElements;
-    int seed;
 };
 
 #endif
