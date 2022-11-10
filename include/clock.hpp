@@ -37,7 +37,11 @@ void clockSelectionQuickSort(Sort array, int k, std::string output){
     utime = resources.ru_utime.tv_sec + resources.ru_utime.tv_usec/1000000.0;
     stime = resources.ru_stime.tv_sec + resources.ru_stime.tv_usec/1000000.0;
     total_time = utime + stime;
-    outputFile << "Tempo de execução do QuickSort Seleção com " << array.getNumberElements() << " elementos: " << total_time << std::endl;
+    outputFile << "Tempo de execução do QuickSort Seleção com " << array.getNumberElements() << " elementos e m = " << k << std::endl;
+    outputFile << "Número de comparações: " << array.getComparisons() << std::endl;
+    outputFile << "Número de cópias: " << array.getCopies() << std::endl;
+    outputFile << "Tempo de execução: " << total_time << std::endl;
+    outputFile << std::endl;
 }
 
 void clockMedianQuickSort(Sort array, int k, int medianPivot, std::string output){
@@ -94,5 +98,9 @@ void clockHeapSort(Sort array, std::string output){
     utime = resources.ru_utime.tv_sec + resources.ru_utime.tv_usec/1000000.0;
     stime = resources.ru_stime.tv_sec + resources.ru_stime.tv_usec/1000000.0;
     total_time = utime + stime;
-    outputFile << "Tempo de execução do HeapSort com " << array.getNumberElements() << " elementos: " << total_time << std::endl;
+    outputFile << "HeapSort com " << array.getNumberElements() << " elementos " << std::endl;
+    outputFile << "Número de comparações: " << array.getComparisons() << std::endl;
+    outputFile << "Número de cópias: " << array.getCopies() << std::endl;
+    outputFile << "Tempo de execução: " << total_time << std::endl;
+    outputFile << std::endl;
 }

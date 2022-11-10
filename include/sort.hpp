@@ -26,6 +26,7 @@ public:
     void randomArrays();
     void swap(int i, int j);
     void recursiveQuickSort(int left, int right);
+    int randomPartition(int left, int right, int partition);
     void medianQuickSort(int left, int right, int medianPivot);
     void selectionQuickSort(int left, int right, int k);
     void noRecursiveQuickSort();

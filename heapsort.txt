@@ -1,7 +1,35 @@
-Tempo de execução do HeapSort com 1000 elementos: 0.018774
-Tempo de execução do HeapSort com 5000 elementos: 0.06196
-Tempo de execução do HeapSort com 10000 elementos: 0.141519
-Tempo de execução do HeapSort com 50000 elementos: 0.656971
-Tempo de execução do HeapSort com 100000 elementos: 1.79915
-Tempo de execução do HeapSort com 500000 elementos: 8.59714
-Tempo de execução do HeapSort com 1000000 elementos: 23.4897
+HeapSort com 1000 elementos 
+Número de comparações: 49093
+Número de cópias: 27060
+Tempo de execução: 0.011415
+
+HeapSort com 5000 elementos 
+Número de comparações: 305498
+Número de cópias: 171303
+Tempo de execução: 0.045958
+
+HeapSort com 10000 elementos 
+Número de comparações: 660463
+Número de cópias: 372282
+Tempo de execução: 0.107033
+
+HeapSort com 50000 elementos 
+Número de comparações: 3888048
+Número de cópias: 2212833
+Tempo de execução: 0.581743
+
+HeapSort com 100000 elementos 
+Número de comparações: 8274303
+Número de cópias: 4724586
+Tempo de execução: 1.6077
+
+HeapSort com 500000 elementos 
+Número de comparações: 47119143
+Número de cópias: 27071490
+Tempo de execução: 7.68944
+
+HeapSort com 1000000 elementos 
+Número de comparações: 99239283
+Número de cópias: 57143574
+Tempo de execução: 20.1218
+

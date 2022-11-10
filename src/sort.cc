@@ -71,45 +71,33 @@ void Sort::recursiveQuickSort(int left, int right){
         recursiveQuickSort(i, right);
 }
 
-void Sort::medianQuickSort(int left, int right, int number){
-
-    copies++;
+int Sort::randomPartition(int left, int right, int number){
+    
     int sum = 0;
     srand(seed);
 
     for(int i = 0; i < number; i++){
-        sum += rand() % (right - left) + 1;
+        comparisons++;
+        sum += left + rand() % (right - left);
     }
 
-    int aux = std::trunc(sum/number);
-    Data pivot = elements[aux];
-    int i = left, j = right;
+    int random = trunc(sum/number);
+
+    swap(random, right);
+
+    return partition(left, right);
+}
+
+
+void Sort::medianQuickSort(int left, int right, int number){
 
     comparisons++;
-    while(i <= j){
-        comparisons++;
-        while(elements[i].key < pivot.key){
-            i++;
-            comparisons++;
-        }
-        while(elements[j].key > pivot.key){
-            j--;
-            comparisons++;
-        }
-        comparisons++;
-        if(i <= j){
-            swap(i, j);
-            i++;
-            j--;
-        }
-    }
+    if(left < right){
+        int pi = randomPartition(left, right, number);
 
-    comparisons++;
-    if(left < j)
-        medianQuickSort(left, j, (left + j) / 2);
-    comparisons++;
-    if(i < right)
-        medianQuickSort(i, right, (i + right) / 2);
+        medianQuickSort(left, pi - 1, number);
+        medianQuickSort(pi + 1, right, number);
+    }    
 }
 
 int Sort::partition(int left, int right){
@@ -293,10 +281,13 @@ void Sort::heapify(int n, int i){
 }
 
 void Sort::heapSort(int n){
-    for(int i = n / 2 - 1; i >= 0; i--)
+    for(int i = n / 2 - 1; i >= 0; i--){
         heapify(n, i);
+        comparisons++;
+    }
     
     for(int i = n - 1; i >= 0; i--){
+        comparisons++;
         swap(0, i);
         heapify(i, 0);
     }
