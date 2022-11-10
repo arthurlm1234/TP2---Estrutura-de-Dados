@@ -21,7 +21,7 @@ void clockNoRecursiveQuickSort(Sort array, std::string output){
     utime = resources.ru_utime.tv_sec + resources.ru_utime.tv_usec/1000000.0;
     stime = resources.ru_stime.tv_sec + resources.ru_stime.tv_usec/1000000.0;
     total_time = utime + stime;
-    std::cout << "Tempo de execução do QuickSort Não Recursivo com " << array.getNumberElements() << " elementos: " << total_time << std::endl;
+    outputFile << "Tempo de execução do QuickSort Não Recursivo com " << array.getNumberElements() << " elementos: " << total_time << std::endl;
 }
 
 void clockSelectionQuickSort(Sort array, int k, std::string output){
@@ -33,19 +33,19 @@ void clockSelectionQuickSort(Sort array, int k, std::string output){
     utime = resources.ru_utime.tv_sec + resources.ru_utime.tv_usec/1000000.0;
     stime = resources.ru_stime.tv_sec + resources.ru_stime.tv_usec/1000000.0;
     total_time = utime + stime;
-    std::cout << "Tempo de execução do QuickSort Seleção com " << array.getNumberElements() << " elementos: " << total_time << std::endl;
+    outputFile << "Tempo de execução do QuickSort Seleção com " << array.getNumberElements() << " elementos: " << total_time << std::endl;
 }
 
-void clockMedianQuickSort(Sort array, int k, std::string output){
+void clockMedianQuickSort(Sort array, int k, int medianPivot, std::string output){
     std::ofstream outputFile(output, std::ios::app);
     struct rusage resources;
     double utime, stime, total_time;
-    array.medianQuickSort(0, array.getNumberElements() - 1, k);
+    array.medianQuickSort(0, array.getNumberElements() - 1, k, medianPivot);
     getrusage(RUSAGE_SELF, &resources);
     utime = resources.ru_utime.tv_sec + resources.ru_utime.tv_usec/1000000.0;
     stime = resources.ru_stime.tv_sec + resources.ru_stime.tv_usec/1000000.0;
     total_time = utime + stime;
-    std::cout << "Tempo de execução do QuickSort Mediana com " << array.getNumberElements() << " elementos: " << total_time << std::endl;
+    outputFile << "Tempo de execução do QuickSort Mediana com " << array.getNumberElements() << " elementos: " << total_time << std::endl;
 }
 
 void clockStackSmartQuickSort(Sort array, std::string output){
@@ -57,5 +57,31 @@ void clockStackSmartQuickSort(Sort array, std::string output){
     utime = resources.ru_utime.tv_sec + resources.ru_utime.tv_usec/1000000.0;
     stime = resources.ru_stime.tv_sec + resources.ru_stime.tv_usec/1000000.0;
     total_time = utime + stime;
-    std::cout << "Tempo de execução do QuickSort Stack Smart com " << array.getNumberElements() << " elementos: " << total_time << std::endl;
+    outputFile << "Tempo de execução do QuickSort Stack Smart com " << array.getNumberElements() << " elementos: " << total_time << std::endl;
+}
+
+void clockMergeSort(Sort array, std::string output){
+    std::ofstream outputFile(output, std::ios::app);
+    struct rusage resources;
+    double utime, stime, total_time;
+    array.mergeSort(0, array.getNumberElements() - 1);
+    //array.printArray();
+    getrusage(RUSAGE_SELF, &resources);
+    utime = resources.ru_utime.tv_sec + resources.ru_utime.tv_usec/1000000.0;
+    stime = resources.ru_stime.tv_sec + resources.ru_stime.tv_usec/1000000.0;
+    total_time = utime + stime;
+    outputFile << "Tempo de execução do MergeSort com " << array.getNumberElements() << " elementos: " << total_time << std::endl;
+}
+
+void clockHeapSort(Sort array, std::string output){
+    std::ofstream outputFile(output, std::ios::app);
+    struct rusage resources;
+    double utime, stime, total_time;
+    array.heapSort(array.getNumberElements()-1);
+    //array.printArray();
+    getrusage(RUSAGE_SELF, &resources);
+    utime = resources.ru_utime.tv_sec + resources.ru_utime.tv_usec/1000000.0;
+    stime = resources.ru_stime.tv_sec + resources.ru_stime.tv_usec/1000000.0;
+    total_time = utime + stime;
+    outputFile << "Tempo de execução do HeapSort com " << array.getNumberElements() << " elementos: " << total_time << std::endl;
 }

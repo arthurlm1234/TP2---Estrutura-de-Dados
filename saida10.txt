@@ -1,7 +1,7 @@
-Tempo de execução do QuickSort Recursivo com 1000 elementos: 0.025877
-Tempo de execução do QuickSort Recursivo com 5000 elementos: 0.122107
-Tempo de execução do QuickSort Recursivo com 10000 elementos: 0.319268
-Tempo de execução do QuickSort Recursivo com 50000 elementos: 1.37653
-Tempo de execução do QuickSort Recursivo com 100000 elementos: 3.51579
-Tempo de execução do QuickSort Recursivo com 500000 elementos: 14.3589
-Tempo de execução do QuickSort Recursivo com 1000000 elementos: 38.2855
+Tempo de execução do QuickSort Mediana com 1000 elementos: 0.009644
+Tempo de execução do QuickSort Mediana com 5000 elementos: 0.027883
+Tempo de execução do QuickSort Mediana com 10000 elementos: 0.064452
+Tempo de execução do QuickSort Mediana com 50000 elementos: 0.275365
+Tempo de execução do QuickSort Mediana com 100000 elementos: 0.711742
+Tempo de execução do QuickSort Mediana com 500000 elementos: 3.04156
+Tempo de execução do QuickSort Mediana com 1000000 elementos: 7.60668

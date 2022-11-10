@@ -22,10 +22,14 @@ public:
     ~Sort();
     void randomArrays();
     void recursiveQuickSort(int left, int right);
-    void medianQuickSort(int left, int right, int k);
+    void medianQuickSort(int left, int right, int k, int medianPivot);
     void selectionQuickSort(int left, int right, int k);
     void noRecursiveQuickSort();
     void stackSmartQuickSort();
+    void mergeSort(int left, int right);
+    void merge(int left, int middle, int right);
+    void heapSort(int n);
+    void heapify(int n, int i);
     void printArray();
     int partition(int left, int right);
     int getNumberElements();

@@ -1,0 +1,7 @@
+Tempo de execução do HeapSort com 1000 elementos: 0.018774
+Tempo de execução do HeapSort com 5000 elementos: 0.06196
+Tempo de execução do HeapSort com 10000 elementos: 0.141519
+Tempo de execução do HeapSort com 50000 elementos: 0.656971
+Tempo de execução do HeapSort com 100000 elementos: 1.79915
+Tempo de execução do HeapSort com 500000 elementos: 8.59714
+Tempo de execução do HeapSort com 1000000 elementos: 23.4897

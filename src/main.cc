@@ -1,6 +1,20 @@
 #include <iostream>
 #include <getopt.h>
+#include <cmath>
 #include "clock.hpp"
+
+int calculateMedian(int seed, int median, int tam){
+    
+    int sum = 0;
+    
+    srand(seed);
+
+    for(int i = 0; i < median; i++){
+        sum += rand() % tam;
+    }
+
+    return std::trunc(sum/median);
+}
 
 int main(int argc, char *argv[]){
 
@@ -33,6 +47,7 @@ int main(int argc, char *argv[]){
     std::ifstream input_file(input);
     std::ofstream outputFile(output);
 
+
     erroAssert(input_file.is_open(), "Arquivo de entrada não encontrado");
     
     int num_arrays,tam;
@@ -45,13 +60,14 @@ int main(int argc, char *argv[]){
         erroAssert(tam > 0, "Tamanho do array inválido");
         array = new Sort(seed, tam, output);
         array->randomArrays();
+        int medianPivot = calculateMedian(seed, median, tam);
         
         switch(type){
             case 1:
                 clockRecursiveQuickSort(*array, output);
                 break;
             case 2:
-                clockMedianQuickSort(*array, median, output);
+                clockMedianQuickSort(*array, median, medianPivot, output);
                 break;
             case 3:
                 clockSelectionQuickSort(*array, partition, output);
@@ -61,6 +77,12 @@ int main(int argc, char *argv[]){
                 break;
             case 5:
                 clockStackSmartQuickSort(*array, output);
+                break;
+            case 6:
+                clockMergeSort(*array, output);
+                break;
+            case 7:
+                clockHeapSort(*array, output);
                 break;
             default:
                 erroAssert(false, "Opcão inválida!");

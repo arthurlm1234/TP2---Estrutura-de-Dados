@@ -1,6 +1,5 @@
 #include "sort.hpp"
 
-
 Sort::Sort(int _seed, int _numberElements, std::string _output){
     seed = _seed;
     numberElements = _numberElements;
@@ -60,18 +59,9 @@ void Sort::recursiveQuickSort(int left, int right){
 
 }
 
-void Sort::medianQuickSort(int left, int right, int k){
-    int indexes[k];
-    int sum = 0;
-    
-    srand(seed);
+void Sort::medianQuickSort(int left, int right, int k, int medianPivot){
 
-    for(int i = 0; i < k; i++){
-        indexes[i] = rand() % numberElements;
-        sum+= indexes[i];
-    }
-
-    Data pivot = elements[sum / k];
+    Data pivot = elements[medianPivot];
     Data tmp;
     int i = left, j = right;
 
@@ -200,6 +190,90 @@ void Sort::selectionQuickSort(int left, int right, int k){
         selectionQuickSort(left, j, k);
     if(i < right)
         selectionQuickSort(i, right, k);
+}
+
+//dont use time
+void Sort::mergeSort(int left, int right){
+    if(left < right){
+        int middle = (left + right) / 2;
+        mergeSort(left, middle);
+        mergeSort(middle + 1, right);
+        merge(left, middle, right);
+    }
+}
+
+void Sort::merge(int left, int middle, int right){
+    int i, j, k;
+    int n1 = middle - left + 1;
+    int n2 = right - middle;
+
+    Data *L = new Data[n1];
+    Data *R = new Data[n2];
+
+    for(i = 0; i < n1; i++)
+        L[i] = elements[left + i];
+    for(j = 0; j < n2; j++)
+        R[j] = elements[middle + 1 + j];
+
+    i = 0;
+    j = 0;
+    k = left;
+
+    while(i < n1 && j < n2){
+        if(L[i].key <= R[j].key){
+            elements[k] = L[i];
+            i++;
+        }else{
+            elements[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+
+    while(i < n1){
+        elements[k] = L[i];
+        i++;
+        k++;
+    }
+
+    while(j < n2){
+        elements[k] = R[j];
+        j++;
+        k++;
+    }
+
+    delete[] L;
+    delete[] R;
+}
+
+void Sort::heapify(int n, int i){
+    int largest = i;
+    int l = 2 * i + 1;
+    int r = 2 * i + 2;
+
+    if(l < n && elements[l].key > elements[largest].key)
+        largest = l;
+    if(r < n && elements[r].key > elements[largest].key)
+        largest = r;
+    if(largest != i){
+        Data tmp = elements[i];
+        elements[i] = elements[largest];
+        elements[largest] = tmp;
+        heapify(n, largest);
+    }
+}
+
+void Sort::heapSort(int n){
+    Data tmp;
+    for(int i = n / 2 - 1; i >= 0; i--)
+        heapify(n, i);
+    
+    for(int i = n - 1; i >= 0; i--){
+        tmp = elements[0];
+        elements[0] = elements[i];
+        elements[i] = tmp;
+        heapify(i, 0);
+    }
 }
 
 void Sort::printArray(){
