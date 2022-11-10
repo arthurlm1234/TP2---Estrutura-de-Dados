@@ -1,7 +1,10 @@
-Tempo de execução do MergeSort com 1000 elementos: 0.023436
-Tempo de execução do MergeSort com 5000 elementos: 0.083284
-Tempo de execução do MergeSort com 10000 elementos: 0.223744
-Tempo de execução do MergeSort com 50000 elementos: 0.996241
-Tempo de execução do MergeSort com 100000 elementos: 2.7417
-Tempo de execução do MergeSort com 500000 elementos: 12.8189
-Tempo de execução do MergeSort com 1000000 elementos: 34.7528
+MergeSort com 1000 elementos 
+Número de comparações: 30666
+Número de cópias: 19952
+Tempo de execução: 3.94745
+
+MergeSort com 5000 elementos 
+Número de comparações: 188835
+Número de cópias: 123616
+Tempo de execução: 7.86411
+

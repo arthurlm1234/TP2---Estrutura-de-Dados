@@ -9,7 +9,11 @@ void clockRecursiveQuickSort(Sort array, std::string output){
     utime = resources.ru_utime.tv_sec + resources.ru_utime.tv_usec/1000000.0;
     stime = resources.ru_stime.tv_sec + resources.ru_stime.tv_usec/1000000.0;
     total_time = utime + stime;
-    outputFile << "Tempo de execução do QuickSort Recursivo com " << array.getNumberElements() << " elementos: " << total_time << std::endl;
+    outputFile << "QuickSort Recursivo com " << array.getNumberElements() << " elementos " << std::endl;
+    outputFile << "Número de comparações: " << array.getComparisons() << std::endl;
+    outputFile << "Número de cópias: " << array.getCopies() << std::endl;
+    outputFile << "Tempo de execução: " << total_time << std::endl;
+    outputFile << std::endl;
 }
 
 void clockNoRecursiveQuickSort(Sort array, std::string output){
@@ -40,12 +44,16 @@ void clockMedianQuickSort(Sort array, int k, int medianPivot, std::string output
     std::ofstream outputFile(output, std::ios::app);
     struct rusage resources;
     double utime, stime, total_time;
-    array.medianQuickSort(0, array.getNumberElements() - 1, k, medianPivot);
+    array.medianQuickSort(0, array.getNumberElements() - 1, 3);
     getrusage(RUSAGE_SELF, &resources);
     utime = resources.ru_utime.tv_sec + resources.ru_utime.tv_usec/1000000.0;
     stime = resources.ru_stime.tv_sec + resources.ru_stime.tv_usec/1000000.0;
     total_time = utime + stime;
-    outputFile << "Tempo de execução do QuickSort Mediana com " << array.getNumberElements() << " elementos: " << total_time << std::endl;
+    outputFile << "QuickSort Mediana com " << array.getNumberElements() << " elementos e k = " << k << std::endl;
+    outputFile << "Número de comparações: " << array.getComparisons() << std::endl;
+    outputFile << "Número de cópias: " << array.getCopies() << std::endl;
+    outputFile << "Tempo de execução: " << total_time << std::endl;
+    outputFile << std::endl;
 }
 
 void clockStackSmartQuickSort(Sort array, std::string output){
@@ -65,12 +73,15 @@ void clockMergeSort(Sort array, std::string output){
     struct rusage resources;
     double utime, stime, total_time;
     array.mergeSort(0, array.getNumberElements() - 1);
-    //array.printArray();
     getrusage(RUSAGE_SELF, &resources);
     utime = resources.ru_utime.tv_sec + resources.ru_utime.tv_usec/1000000.0;
     stime = resources.ru_stime.tv_sec + resources.ru_stime.tv_usec/1000000.0;
     total_time = utime + stime;
-    outputFile << "Tempo de execução do MergeSort com " << array.getNumberElements() << " elementos: " << total_time << std::endl;
+    outputFile << "MergeSort com " << array.getNumberElements() << " elementos " << std::endl;
+    outputFile << "Número de comparações: " << array.getComparisons() << std::endl;
+    outputFile << "Número de cópias: " << array.getCopies() << std::endl;
+    outputFile << "Tempo de execução: " << total_time << std::endl;
+    outputFile << std::endl;
 }
 
 void clockHeapSort(Sort array, std::string output){

@@ -1,7 +1,0 @@
-Tempo de execução do QuickSort Seleção com 1000 elementos: 0.009442
-Tempo de execução do QuickSort Seleção com 5000 elementos: 0.039072
-Tempo de execução do QuickSort Seleção com 10000 elementos: 0.075442
-Tempo de execução do QuickSort Seleção com 50000 elementos: 0.24242
-Tempo de execução do QuickSort Seleção com 100000 elementos: 0.580518
-Tempo de execução do QuickSort Seleção com 500000 elementos: 2.68515
-Tempo de execução do QuickSort Seleção com 1000000 elementos: 6.79776

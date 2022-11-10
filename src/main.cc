@@ -6,7 +6,7 @@
 int calculateMedian(int seed, int median, int tam){
     
     int sum = 0;
-    
+
     srand(seed);
 
     for(int i = 0; i < median; i++){

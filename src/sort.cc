@@ -5,10 +5,27 @@ Sort::Sort(int _seed, int _numberElements, std::string _output){
     numberElements = _numberElements;
     output = _output;
     elements = new Data[numberElements];
+    comparisons = 0;
+    copies = 0;
 }
 
 Sort::~Sort(){
     delete[] elements;
+}
+
+void Sort::swap(int i, int j){
+    Data aux = elements[i];
+    elements[i] = elements[j];
+    elements[j] = aux;
+    copies += 3;
+}
+
+int Sort::getComparisons(){
+    return comparisons;
+}
+
+int Sort::getCopies(){
+    return copies;
 }
 
 int Sort::getNumberElements(){
@@ -23,67 +40,76 @@ void Sort::randomArrays(){
 }
 
 void Sort::recursiveQuickSort(int left, int right){
-    struct rusage resources;
 
-    double utime, stime, total_time;
-
-    
     int i = left, j = right;
-    Data tmp;
+    copies++;
     Data pivot = elements[(left + right) / 2];
 
     while(i <= j){
-        while(elements[i].key < pivot.key)
+        comparisons++;
+        while(elements[i].key < pivot.key){
             i++;
-        while(elements[j].key > pivot.key)
+            comparisons++;
+        }
+        while(elements[j].key > pivot.key){
             j--;
+            comparisons++;
+        }
+        comparisons++;
         if(i <= j){
-            tmp = elements[i];
-            elements[i] = elements[j];
-            elements[j] = tmp;
+            swap(i, j);
             i++;
             j--;
         }
     }
 
+    comparisons++;
     if(left < j)
         recursiveQuickSort(left, j);
+    comparisons++;
     if(i < right)
         recursiveQuickSort(i, right);
-    
-    getrusage(RUSAGE_SELF, &resources);
-    utime = resources.ru_utime.tv_sec + resources.ru_utime.tv_usec / 1000000.0;
-    stime = resources.ru_stime.tv_sec + resources.ru_stime.tv_usec / 1000000.0;
-    total_time = utime + stime;
-    //std::cout << "Tempo de execução: " << total_time << std::endl;
-
 }
 
-void Sort::medianQuickSort(int left, int right, int k, int medianPivot){
+void Sort::medianQuickSort(int left, int right, int number){
 
-    Data pivot = elements[medianPivot];
-    Data tmp;
+    copies++;
+    int sum = 0;
+    srand(seed);
+
+    for(int i = 0; i < number; i++){
+        sum += rand() % (right - left) + 1;
+    }
+
+    int aux = std::trunc(sum/number);
+    Data pivot = elements[aux];
     int i = left, j = right;
 
+    comparisons++;
     while(i <= j){
-        while(elements[i].key < pivot.key)
+        comparisons++;
+        while(elements[i].key < pivot.key){
             i++;
-        while(elements[j].key > pivot.key)
+            comparisons++;
+        }
+        while(elements[j].key > pivot.key){
             j--;
+            comparisons++;
+        }
+        comparisons++;
         if(i <= j){
-            tmp = elements[i];
-            elements[i] = elements[j];
-            elements[j] = tmp;
-
+            swap(i, j);
             i++;
             j--;
         }
     }
 
+    comparisons++;
     if(left < j)
-        recursiveQuickSort(left, j);
+        medianQuickSort(left, j, (left + j) / 2);
+    comparisons++;
     if(i < right)
-        recursiveQuickSort(i, right);
+        medianQuickSort(i, right, (i + right) / 2);
 }
 
 int Sort::partition(int left, int right){
@@ -94,26 +120,18 @@ int Sort::partition(int left, int right){
 
     for(int i = left; i < right; i++){
         if(elements[i].key <= pivot.key){
-            Data tmp = elements[i];
-            elements[i] = elements[j];
-            elements[j] = tmp;
+            swap(i, j);
             j++;
         }
     }
 
-    Data tmp = elements[j];
-    elements[j] = elements[right];
-    elements[right] = tmp;
+    swap(j, right);
 
     return j;
 }
 
 
 void Sort::noRecursiveQuickSort(){
-    
-    struct rusage resources;
-
-    double utime, stime, total_time;
 
     int left = 0;
     int right = numberElements - 1;
@@ -139,61 +157,58 @@ void Sort::noRecursiveQuickSort(){
             stack[++top] = right;
         }
     }
-
-    getrusage(RUSAGE_SELF, &resources);
-    utime = resources.ru_utime.tv_sec + resources.ru_utime.tv_usec / 1000000.0;
-    stime = resources.ru_stime.tv_sec + resources.ru_stime.tv_usec / 1000000.0;
-    total_time = utime + stime;
-    //std::cout << "Tempo de execução: " << total_time << std::endl;
 }
     
 
 void Sort::selectionQuickSort(int left, int right, int k){
-    struct rusage resources;
 
-    double utime, stime, total_time;
-    
     int i = left, j = right;
-    Data tmp;
 
+    comparisons++;
     if(right - left <= k){
+        comparisons++;
         for(int i = left; i < right; i++){
             int min = i;
+            comparisons++;
             for(int j = i + 1; j <= right; j++){
+                comparisons += 2;
                 if(elements[j].key < elements[min].key)
                     min = j;
             }
-            tmp = elements[i];
-            elements[i] = elements[min];
-            elements[min] = tmp;
+            swap(i, min);
         }
         return;
     }
 
+    comparisons++;
     Data pivot = elements[(left + right) / 2];
 
+    comparisons++;
     while(i <= j){
+        comparisons++;
         while(elements[i].key < pivot.key)
             i++;
+        comparisons++;
         while(elements[j].key > pivot.key)
             j--;
+        comparisons++;
         if(i <= j){
-            tmp = elements[i];
-            elements[i] = elements[j];
-            elements[j] = tmp;
+            swap(i, j);
             i++;
             j--;
         }
     }
 
+    comparisons++;
     if(left < j)
         selectionQuickSort(left, j, k);
+    comparisons++;
     if(i < right)
         selectionQuickSort(i, right, k);
 }
 
-//dont use time
 void Sort::mergeSort(int left, int right){
+    comparisons++;
     if(left < right){
         int middle = (left + right) / 2;
         mergeSort(left, middle);
@@ -210,34 +225,47 @@ void Sort::merge(int left, int middle, int right){
     Data *L = new Data[n1];
     Data *R = new Data[n2];
 
-    for(i = 0; i < n1; i++)
+    for(i = 0; i < n1; i++){
+        comparisons++;
         L[i] = elements[left + i];
-    for(j = 0; j < n2; j++)
+        copies++;
+    }
+    for(j = 0; j < n2; j++){
+        comparisons++;
         R[j] = elements[middle + 1 + j];
+        copies++;
+    }
 
     i = 0;
     j = 0;
     k = left;
 
     while(i < n1 && j < n2){
+        comparisons += 2;
         if(L[i].key <= R[j].key){
             elements[k] = L[i];
+            copies++;
             i++;
         }else{
             elements[k] = R[j];
+            copies++;
             j++;
         }
         k++;
     }
 
     while(i < n1){
+        comparisons++;
         elements[k] = L[i];
+        copies++;
         i++;
         k++;
     }
 
     while(j < n2){
+        comparisons++;
         elements[k] = R[j];
+        copies++;
         j++;
         k++;
     }
@@ -251,27 +279,25 @@ void Sort::heapify(int n, int i){
     int l = 2 * i + 1;
     int r = 2 * i + 2;
 
+    comparisons += 2;
     if(l < n && elements[l].key > elements[largest].key)
         largest = l;
+    comparisons += 2;
     if(r < n && elements[r].key > elements[largest].key)
         largest = r;
+    comparisons++;
     if(largest != i){
-        Data tmp = elements[i];
-        elements[i] = elements[largest];
-        elements[largest] = tmp;
+        swap(i, largest);
         heapify(n, largest);
     }
 }
 
 void Sort::heapSort(int n){
-    Data tmp;
     for(int i = n / 2 - 1; i >= 0; i--)
         heapify(n, i);
     
     for(int i = n - 1; i >= 0; i--){
-        tmp = elements[0];
-        elements[0] = elements[i];
-        elements[i] = tmp;
+        swap(0, i);
         heapify(i, 0);
     }
 }
@@ -281,10 +307,6 @@ void Sort::printArray(){
         std::cout << elements[i].key << std::endl;
     }
 }
-
-
-
-//iterative quicksort, process first
 
 
 

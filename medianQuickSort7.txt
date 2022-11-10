@@ -1,0 +1,35 @@
+QuickSort Mediana com 1000 elementos e k = 7
+Número de comparações: 15929
+Número de cópias: 8748
+Tempo de execução: 0.008992
+
+QuickSort Mediana com 5000 elementos e k = 7
+Número de comparações: 95184
+Número de cópias: 51411
+Tempo de execução: 0.027654
+
+QuickSort Mediana com 10000 elementos e k = 7
+Número de comparações: 202247
+Número de cópias: 109903
+Tempo de execução: 0.065834
+
+QuickSort Mediana com 50000 elementos e k = 7
+Número de comparações: 1194068
+Número de cópias: 628224
+Tempo de execução: 0.253418
+
+QuickSort Mediana com 100000 elementos e k = 7
+Número de comparações: 2529650
+Número de cópias: 1325662
+Tempo de execução: 0.64391
+
+QuickSort Mediana com 500000 elementos e k = 7
+Número de comparações: 14403154
+Número de cópias: 7486422
+Tempo de execução: 3.02158
+
+QuickSort Mediana com 1000000 elementos e k = 7
+Número de comparações: 29438283
+Número de cópias: 15787209
+Tempo de execução: 7.67153
+
