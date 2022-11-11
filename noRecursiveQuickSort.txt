@@ -1,35 +1,35 @@
 QuickSort Não Recursivo com 1000 elementos 
 Número de comparações: 1318
 Número de cópias: 17685
-Tempo de execução: 0.013441
+Tempo de execução: 0.01801
 
 QuickSort Não Recursivo com 5000 elementos 
 Número de comparações: 6636
 Número de cópias: 117198
-Tempo de execução: 0.046809
+Tempo de execução: 0.056497
 
 QuickSort Não Recursivo com 10000 elementos 
 Número de comparações: 13380
 Número de cópias: 231714
-Tempo de execução: 0.10681
+Tempo de execução: 0.111273
 
 QuickSort Não Recursivo com 50000 elementos 
 Número de comparações: 66662
 Número de cópias: 1467999
-Tempo de execução: 0.480812
+Tempo de execução: 0.442662
 
 QuickSort Não Recursivo com 100000 elementos 
 Número de comparações: 133278
 Número de cópias: 3436953
-Tempo de execução: 1.34272
+Tempo de execução: 1.20327
 
 QuickSort Não Recursivo com 500000 elementos 
 Número de comparações: 669198
 Número de cópias: 17614377
-Tempo de execução: 4.57433
+Tempo de execução: 4.1087
 
 QuickSort Não Recursivo com 1000000 elementos 
 Número de comparações: 1354876
 Número de cópias: 37691289
-Tempo de execução: 9.17401
+Tempo de execução: 8.51771
 
