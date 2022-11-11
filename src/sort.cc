@@ -34,7 +34,7 @@ int Sort::getNumberElements(){
 
 void Sort::randomArrays(){
     srand(seed);
-    for(int i = 0; i < numberElements; i++){
+    for(long unsigned int i = 0; i < numberElements; i++){
         elements[i].key = rand() % 1000000;
     }
 }
@@ -102,8 +102,7 @@ void Sort::medianQuickSort(int left, int right, int number){
 
 int Sort::partition(int left, int right){
     Data pivot = elements[right];
-    int i, j;
-    i = left;
+    int j;
     j = left;
 
     for(int i = left; i < right; i++){
@@ -121,71 +120,88 @@ int Sort::partition(int left, int right){
 
 void Sort::noRecursiveQuickSort(){
 
-    int *beg, *end, i=0, L, R;
-    Data piv;
+    int left = 0, right = numberElements - 1;
+    int stack[right - left + 1];
+    int top = -1;
 
-    beg = new int[numberElements];
-    end = new int[numberElements];
+    stack[++top] = left;
+    stack[++top] = right;
 
-    beg[0]=0; end[0]=numberElements;
-    while (i>=0) {
-    comparisons++;
-    copies += 2;
-    L=beg[i]; 
-    R=end[i]-1;
-    comparisons++;
-    if (L<R) {
-        piv=elements[L];
-        copies++;
-        while (L<R) {
-            comparisons++;
-            while (elements[R].key>=piv.key && L<R){
-            R--; 
-            comparisons++;
-            } 
-            comparisons++;
-            if (L<R){
-                elements[L++].key=elements[R].key;
-                copies++;
-            } 
-            while (elements[L].key<=piv.key && L<R){
-            L++; 
-            comparisons++;
-            }
-            comparisons++;
-            if(L < R){
-                elements[R--].key=elements[L].key;
-                copies++;
-            }
+    while(top >= 0){
+        right = stack[top--];
+        left = stack[top--];
+
+        int pi = partition(left, right);
+
+        comparisons++;
+        if(pi - 1 > left){
+            stack[++top] = left;
+            stack[++top] = pi - 1;
         }
-        copies+= 4;
-        elements[L]=piv; 
-        beg[i+1]=L+1; 
-        end[i+1]=end[i]; 
-        end[i++]=L; 
-    }
-    else {
-        i--; 
-    }}
 
-    delete[] beg;
-    delete[] end;
+        comparisons++;
+        if(pi + 1 < right){
+            stack[++top] = pi + 1;
+            stack[++top] = right;
+        }
+    }
 }
 
 
 void Sort::stackSmartQuickSort(){
-    Data pivot;
-    int i, j, L, R;
+    int *beg, *end, i=0, L, R, swap;
+    
+    beg = new int[numberElements];
+    end = new int[numberElements];
 
-    int *begin = new int[numberElements];
-    int *end = new int[numberElements];
+    Data piv;
 
-    begin[0] = 0;
-    end[0] = numberElements;
+    beg[0]=0; 
+    end[0]=numberElements;
 
-    while(i>=0){
-        L = begin[i];
-    }
+    while (i>=0) {
+        copies += 2;
+        L=beg[i]; 
+        R=end[i]-1;
+        if (L<R) {
+            piv=elements[L];
+            while (L<R) {
+                comparisons++;
+                while (elements[R].key >=piv.key && L<R){
+                    R--; 
+                    comparisons++;
+                } 
+                if (L<R){
+                    elements[L++].key=elements[R].key;
+                    copies++;
+                } 
+                while (elements[L].key<=piv.key && L<R){
+                    L++; 
+                    comparisons++;
+                } 
+                if (L<R) {
+                    elements[R--]=elements[L];
+                    comparisons++; }
+            }
+                copies += 4;
+                elements[L]=piv; 
+                beg[i+1]=L+1; 
+                end[i+1]=end[i]; 
+                end[i++]=L;
+                comparisons++;
+            if (end[i]-beg[i]>end[i-1]-beg[i-1]) {
+                copies += 6;
+                swap=beg[i]; 
+                beg[i]=beg[i-1]; 
+                beg[i-1]=swap;
+                swap=end[i]; 
+                end[i]=end[i-1]; 
+                end[i-1]=swap; }}
+        else {
+            i--; }}
+        
+    delete[] beg;
+    delete[] end;
 }
     
 
@@ -335,7 +351,7 @@ void Sort::heapSort(int n){
 }
 
 void Sort::printArray(){
-    for(int i = 0; i < numberElements; i++){
+    for(long unsigned int i = 0; i < numberElements; i++){
         std::cout << elements[i].key << std::endl;
     }
 }

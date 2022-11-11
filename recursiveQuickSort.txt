@@ -1,35 +1,35 @@
 QuickSort Recursivo com 1000 elementos 
 Número de comparações: 15286
 Número de cópias: 8727
-Tempo de execução: 0.009039
+Tempo de execução: 0.008721
 
 QuickSort Recursivo com 5000 elementos 
 Número de comparações: 92353
 Número de cópias: 50852
-Tempo de execução: 0.026866
+Tempo de execução: 0.029886
 
 QuickSort Recursivo com 10000 elementos 
 Número de comparações: 200203
 Número de cópias: 109341
-Tempo de execução: 0.065034
+Tempo de execução: 0.068829
 
 QuickSort Recursivo com 50000 elementos 
 Número de comparações: 1169969
 Número de cópias: 626021
-Tempo de execução: 0.25022
+Tempo de execução: 0.270368
 
 QuickSort Recursivo com 100000 elementos 
 Número de comparações: 2377318
 Número de cópias: 1338575
-Tempo de execução: 0.650041
+Tempo de execução: 0.714834
 
 QuickSort Recursivo com 500000 elementos 
 Número de comparações: 13528396
 Número de cópias: 7546445
-Tempo de execução: 2.84517
+Tempo de execução: 2.24412
 
 QuickSort Recursivo com 1000000 elementos 
 Número de comparações: 28092718
 Número de cópias: 15842968
-Tempo de execução: 7.29786
+Tempo de execução: 4.45425
 
