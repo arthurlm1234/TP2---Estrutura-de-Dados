@@ -121,29 +121,70 @@ int Sort::partition(int left, int right){
 
 void Sort::noRecursiveQuickSort(){
 
-    int left = 0;
-    int right = numberElements - 1;
-    int stack[right - left + 1];
-    int top = -1;
+    int *beg, *end, i=0, L, R;
+    Data piv;
 
-    stack[++top] = left;
-    stack[++top] = right;
+    beg = new int[numberElements];
+    end = new int[numberElements];
 
-    while(top >= 0){
-        right = stack[top--];
-        left = stack[top--];
-
-        int p = partition(left, right);
-
-        if(p - 1 > left){
-            stack[++top] = left;
-            stack[++top] = p - 1;
+    beg[0]=0; end[0]=numberElements;
+    while (i>=0) {
+    comparisons++;
+    copies += 2;
+    L=beg[i]; 
+    R=end[i]-1;
+    comparisons++;
+    if (L<R) {
+        piv=elements[L];
+        copies++;
+        while (L<R) {
+            comparisons++;
+            while (elements[R].key>=piv.key && L<R){
+            R--; 
+            comparisons++;
+            } 
+            comparisons++;
+            if (L<R){
+                elements[L++].key=elements[R].key;
+                copies++;
+            } 
+            while (elements[L].key<=piv.key && L<R){
+            L++; 
+            comparisons++;
+            }
+            comparisons++;
+            if(L < R){
+                elements[R--].key=elements[L].key;
+                copies++;
+            }
         }
+        copies+= 4;
+        elements[L]=piv; 
+        beg[i+1]=L+1; 
+        end[i+1]=end[i]; 
+        end[i++]=L; 
+    }
+    else {
+        i--; 
+    }}
 
-        if(p + 1 < right){
-            stack[++top] = p + 1;
-            stack[++top] = right;
-        }
+    delete[] beg;
+    delete[] end;
+}
+
+
+void Sort::stackSmartQuickSort(){
+    Data pivot;
+    int i, j, L, R;
+
+    int *begin = new int[numberElements];
+    int *end = new int[numberElements];
+
+    begin[0] = 0;
+    end[0] = numberElements;
+
+    while(i>=0){
+        L = begin[i];
     }
 }
     
