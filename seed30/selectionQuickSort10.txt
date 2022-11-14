@@ -1,0 +1,35 @@
+Tempo de execução do QuickSort Seleção com 1000 elementos e m = 10
+Número de comparações: 14078
+Número de cópias: 7497
+Tempo de execução: 0.001402
+
+Tempo de execução do QuickSort Seleção com 5000 elementos e m = 10
+Número de comparações: 77985
+Número de cópias: 45294
+Tempo de execução: 0.010241
+
+Tempo de execução do QuickSort Seleção com 10000 elementos e m = 10
+Número de comparações: 163530
+Número de cópias: 99486
+Tempo de execução: 0.023119
+
+Tempo de execução do QuickSort Seleção com 50000 elementos e m = 10
+Número de comparações: 891830
+Número de cópias: 568467
+Tempo de execução: 0.130945
+
+Tempo de execução do QuickSort Seleção com 100000 elementos e m = 10
+Número de comparações: 1858260
+Número de cópias: 1212621
+Tempo de execução: 0.295657
+
+Tempo de execução do QuickSort Seleção com 500000 elementos e m = 10
+Número de comparações: 10106775
+Número de cópias: 6900219
+Tempo de execução: 1.86907
+
+Tempo de execução do QuickSort Seleção com 1000000 elementos e m = 10
+Número de comparações: 20904101
+Número de cópias: 14542200
+Tempo de execução: 3.83458
+
