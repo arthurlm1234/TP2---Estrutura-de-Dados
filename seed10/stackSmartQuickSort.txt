@@ -1,0 +1,35 @@
+QuickSort Stack Smart com 1000 elementos 
+Número de comparações: 11910
+Número de cópias: 9294
+Tempo de execução: 0.000511
+
+QuickSort Stack Smart com 5000 elementos 
+Número de comparações: 80141
+Número de cópias: 48594
+Tempo de execução: 0.007235
+
+QuickSort Stack Smart com 10000 elementos 
+Número de comparações: 164767
+Número de cópias: 99865
+Tempo de execução: 0.011894
+
+QuickSort Stack Smart com 50000 elementos 
+Número de comparações: 1082390
+Número de cópias: 526366
+Tempo de execução: 0.08892
+
+QuickSort Stack Smart com 100000 elementos 
+Número de comparações: 2257189
+Número de cópias: 1082215
+Tempo de execução: 0.19897
+
+QuickSort Stack Smart com 500000 elementos 
+Número de comparações: 12308767
+Número de cópias: 5808906
+Tempo de execução: 1.26913
+
+QuickSort Stack Smart com 1000000 elementos 
+Número de comparações: 27926273
+Número de cópias: 12109105
+Tempo de execução: 2.7556
+

@@ -1,0 +1,35 @@
+QuickSort Não Recursivo com 1000 elementos 
+Número de comparações: 1318
+Número de cópias: 17685
+Tempo de execução: 0.001859
+
+QuickSort Não Recursivo com 5000 elementos 
+Número de comparações: 6636
+Número de cópias: 117198
+Tempo de execução: 0.016989
+
+QuickSort Não Recursivo com 10000 elementos 
+Número de comparações: 13380
+Número de cópias: 231714
+Tempo de execução: 0.036284
+
+QuickSort Não Recursivo com 50000 elementos 
+Número de comparações: 66662
+Número de cópias: 1467999
+Tempo de execução: 0.290157
+
+QuickSort Não Recursivo com 100000 elementos 
+Número de comparações: 133278
+Número de cópias: 3436953
+Tempo de execução: 0.734752
+
+QuickSort Não Recursivo com 500000 elementos 
+Número de comparações: 669198
+Número de cópias: 17614377
+Tempo de execução: 3.52885
+
+QuickSort Não Recursivo com 1000000 elementos 
+Número de comparações: 1354876
+Número de cópias: 37691289
+Tempo de execução: 7.42522
+

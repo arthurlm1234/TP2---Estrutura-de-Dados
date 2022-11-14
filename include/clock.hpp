@@ -1,6 +1,6 @@
 #include "sort.hpp"
 
-int previousTime(){
+double previousTime(){
     struct rusage usage;
     getrusage(RUSAGE_SELF, &usage);
     double utime, stime, total;
@@ -12,7 +12,7 @@ int previousTime(){
 
 void clockRecursiveQuickSort(Sort array, std::string output){
     std::ofstream outputFile(output, std::ios::app);
-    int time = previousTime();
+    double time = previousTime();
     struct rusage resources;
     double utime, stime, total_time;
     array.recursiveQuickSort(0, array.getNumberElements() - 1);
@@ -29,7 +29,7 @@ void clockRecursiveQuickSort(Sort array, std::string output){
 
 void clockNoRecursiveQuickSort(Sort array, std::string output){
     std::ofstream outputFile(output, std::ios::app);
-    int time = previousTime();
+    double time = previousTime();
     struct rusage resources;
     double utime, stime, total_time;
     array.noRecursiveQuickSort();
@@ -46,7 +46,7 @@ void clockNoRecursiveQuickSort(Sort array, std::string output){
 
 void clockSelectionQuickSort(Sort array, int k, std::string output){
     std::ofstream outputFile(output, std::ios::app);
-    int time = previousTime();
+    double time = previousTime();
     struct rusage resources;
     double utime, stime, total_time;
     array.selectionQuickSort(0, array.getNumberElements() - 1, k);
@@ -63,7 +63,7 @@ void clockSelectionQuickSort(Sort array, int k, std::string output){
 
 void clockMedianQuickSort(Sort array, int k, std::string output){
     std::ofstream outputFile(output, std::ios::app);
-    int time = previousTime();
+    double time = previousTime();
     struct rusage resources;
     double utime, stime, total_time;
     array.medianQuickSort(0, array.getNumberElements() - 1, k);
@@ -80,7 +80,7 @@ void clockMedianQuickSort(Sort array, int k, std::string output){
 
 void clockStackSmartQuickSort(Sort array, std::string output){
     std::ofstream outputFile(output, std::ios::app);
-    int time = previousTime();
+    double time = previousTime();
     struct rusage resources;
     double utime, stime, total_time;
     array.stackSmartQuickSort();
@@ -97,7 +97,7 @@ void clockStackSmartQuickSort(Sort array, std::string output){
 
 void clockMergeSort(Sort array, std::string output){
     std::ofstream outputFile(output, std::ios::app);
-    int time = previousTime();
+    double time = previousTime();
     struct rusage resources;
     double utime, stime, total_time;
     array.mergeSort(0, array.getNumberElements() - 1);
@@ -114,7 +114,7 @@ void clockMergeSort(Sort array, std::string output){
 
 void clockHeapSort(Sort array, std::string output){
     std::ofstream outputFile(output, std::ios::app);
-    int time = previousTime();
+    double time = previousTime();
     struct rusage resources;
     double utime, stime, total_time;
     array.heapSort(array.getNumberElements());

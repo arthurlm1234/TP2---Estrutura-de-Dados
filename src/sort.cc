@@ -350,12 +350,6 @@ void Sort::heapSort(int n){
     }
 }
 
-void Sort::printArray(){
-    for(long unsigned int i = 0; i < numberElements; i++){
-        std::cout << elements[i].key << std::endl;
-    }
-}
-
 
 
 
