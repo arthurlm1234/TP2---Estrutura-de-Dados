@@ -129,6 +129,7 @@ void Sort::noRecursiveQuickSort(){
     stack[++top] = right;
 
     while(top >= 0){
+        copies += 2;
         right = stack[top--];
         left = stack[top--];
 
@@ -136,6 +137,7 @@ void Sort::noRecursiveQuickSort(){
 
         comparisons++;
         if(pi - 1 > left){
+            copies += 2;
             stack[++top] = left;
             stack[++top] = pi - 1;
         }
@@ -159,6 +161,7 @@ void Sort::stackSmartQuickSort(){
     stack[++top] = right;
 
     while(top >= 0){
+        copies += 2;
         right = stack[top--];
         left = stack[top--];
 
@@ -339,13 +342,6 @@ void Sort::heapSort(int n){
         swap(0, i);
         heapify(i, 0);
     }
-}
-
-void Sort::printArray(){
-    for(int i = 0; i < numberElements; i++){
-        std::cout << elements[i].key << std::endl;
-    }
-    std::cout << std::endl;
 }
 
 

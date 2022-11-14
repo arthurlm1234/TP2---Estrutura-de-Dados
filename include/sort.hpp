@@ -35,7 +35,6 @@ public:
     void merge(int left, int middle, int right);
     void heapSort(int n);
     void heapify(int n, int i);
-    void printArray();
     int partition(int left, int right);
     int getNumberElements();
     int getComparisons();
