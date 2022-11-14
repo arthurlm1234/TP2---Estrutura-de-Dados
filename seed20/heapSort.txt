@@ -1,0 +1,35 @@
+HeapSort com 1000 elementos 
+Número de comparações: 49370
+Número de cópias: 27222
+Tempo de execução: 0.011704
+
+HeapSort com 5000 elementos 
+Número de comparações: 305430
+Número de cópias: 171258
+Tempo de execução: 0.032124
+
+HeapSort com 10000 elementos 
+Número de comparações: 661055
+Número de cópias: 372633
+Tempo de execução: 0.04918
+
+HeapSort com 50000 elementos 
+Número de comparações: 3886440
+Número de cópias: 2211864
+Tempo de execução: 0.413023
+
+HeapSort com 100000 elementos 
+Número de comparações: 8274175
+Número de cópias: 4724505
+Tempo de execução: 0.969022
+
+HeapSort com 500000 elementos 
+Número de comparações: 47116780
+Número de cópias: 27070068
+Tempo de execução: 5.44814
+
+HeapSort com 1000000 elementos 
+Número de comparações: 99239635
+Número de cópias: 57143781
+Tempo de execução: 11.2715
+
