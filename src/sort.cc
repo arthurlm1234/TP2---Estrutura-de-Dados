@@ -120,7 +120,8 @@ int Sort::partition(int left, int right){
 
 void Sort::noRecursiveQuickSort(){
 
-    int left = 0, right = numberElements - 1;
+    int left = 0;
+    int right = numberElements - 1;
     int stack[right - left + 1];
     int top = -1;
 
@@ -149,59 +150,49 @@ void Sort::noRecursiveQuickSort(){
 
 
 void Sort::stackSmartQuickSort(){
-    int *beg, *end, i=0, L, R, swap;
-    
-    beg = new int[numberElements];
-    end = new int[numberElements];
+    int left = 0;
+    int right = numberElements - 1;
+    int stack[right - left + 1];
+    int top = -1;
 
-    Data piv;
+    stack[++top] = left;
+    stack[++top] = right;
 
-    beg[0]=0; 
-    end[0]=numberElements;
+    while(top >= 0){
+        right = stack[top--];
+        left = stack[top--];
 
-    while (i>=0) {
-        copies += 2;
-        L=beg[i]; 
-        R=end[i]-1;
-        if (L<R) {
-            piv=elements[L];
-            while (L<R) {
-                comparisons++;
-                while (elements[R].key >=piv.key && L<R){
-                    R--; 
-                    comparisons++;
-                } 
-                if (L<R){
-                    elements[L++].key=elements[R].key;
-                    copies++;
-                } 
-                while (elements[L].key<=piv.key && L<R){
-                    L++; 
-                    comparisons++;
-                } 
-                if (L<R) {
-                    elements[R--]=elements[L];
-                    comparisons++; }
+        int pi = partition(left, right);
+
+        comparisons++;
+        if(pi - 1 - left < right - pi + 1){
+            comparisons++;
+            if(pi - 1 > left){
+                stack[++top] = left;
+                stack[++top] = pi - 1;
             }
-                copies += 4;
-                elements[L]=piv; 
-                beg[i+1]=L+1; 
-                end[i+1]=end[i]; 
-                end[i++]=L;
-                comparisons++;
-            if (end[i]-beg[i]>end[i-1]-beg[i-1]) {
-                copies += 6;
-                swap=beg[i]; 
-                beg[i]=beg[i-1]; 
-                beg[i-1]=swap;
-                swap=end[i]; 
-                end[i]=end[i-1]; 
-                end[i-1]=swap; }}
-        else {
-            i--; }}
+
+            comparisons++;
+            if(pi + 1 < right){
+                stack[++top] = pi + 1;
+                stack[++top] = right;
+            }
         
-    delete[] beg;
-    delete[] end;
+        }else{
+            comparisons++;
+            if(pi + 1 < right){
+                stack[++top] = pi + 1;
+                stack[++top] = right;
+            }
+
+            comparisons++;
+            if(pi - 1 > left){
+                stack[++top] = left;
+                stack[++top] = pi - 1;
+            }
+        }
+    }
+
 }
     
 
@@ -348,6 +339,13 @@ void Sort::heapSort(int n){
         swap(0, i);
         heapify(i, 0);
     }
+}
+
+void Sort::printArray(){
+    for(int i = 0; i < numberElements; i++){
+        std::cout << elements[i].key << std::endl;
+    }
+    std::cout << std::endl;
 }
 
 
