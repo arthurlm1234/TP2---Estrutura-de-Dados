@@ -14,8 +14,14 @@ Sort::~Sort(){
 }
 
 void Sort::swap(int i, int j){
+    LEMEMLOG((long int)((&elements[i])), sizeof(Data),0);
     Data aux = elements[i];
+
+    LEMEMLOG((long int)((&elements[j])), sizeof(Data),0);
+    ESCREVEMEMLOG((long int)((&elements[i])), sizeof(Data),0);
     elements[i] = elements[j];
+    
+    ESCREVEMEMLOG((long int)((&elements[j])), sizeof(Data),0);
     elements[j] = aux;
     copies += 3;
 }
@@ -40,35 +46,12 @@ void Sort::randomArrays(){
 }
 
 void Sort::recursiveQuickSort(int left, int right){
-
-    int i = left, j = right;
-    copies++;
-    Data pivot = elements[(left + right) / 2];
-
-    while(i <= j){
-        comparisons++;
-        while(elements[i].key < pivot.key){
-            i++;
-            comparisons++;
-        }
-        while(elements[j].key > pivot.key){
-            j--;
-            comparisons++;
-        }
-        comparisons++;
-        if(i <= j){
-            swap(i, j);
-            i++;
-            j--;
-        }
+    
+    if(left < right){
+        int pivot = partition(left, right);
+        recursiveQuickSort(left, pivot - 1);
+        recursiveQuickSort(pivot + 1, right);
     }
-
-    comparisons++;
-    if(left < j)
-        recursiveQuickSort(left, j);
-    comparisons++;
-    if(i < right)
-        recursiveQuickSort(i, right);
 }
 
 int Sort::randomPartition(int left, int right, int number){
@@ -77,7 +60,6 @@ int Sort::randomPartition(int left, int right, int number){
     srand(seed);
 
     for(int i = 0; i < number; i++){
-        comparisons++;
         sum += left + rand() % (right - left);
     }
 
@@ -87,7 +69,6 @@ int Sort::randomPartition(int left, int right, int number){
 
     return partition(left, right);
 }
-
 
 void Sort::medianQuickSort(int left, int right, int number){
 
@@ -101,11 +82,13 @@ void Sort::medianQuickSort(int left, int right, int number){
 }
 
 int Sort::partition(int left, int right){
+
     Data pivot = elements[right];
     int j;
     j = left;
 
     for(int i = left; i < right; i++){
+        comparisons++;
         if(elements[i].key <= pivot.key){
             swap(i, j);
             j++;
@@ -116,7 +99,6 @@ int Sort::partition(int left, int right){
 
     return j;
 }
-
 
 void Sort::noRecursiveQuickSort(){
 
@@ -135,21 +117,18 @@ void Sort::noRecursiveQuickSort(){
 
         int pi = partition(left, right);
 
-        comparisons++;
         if(pi - 1 > left){
             copies += 2;
             stack[++top] = left;
             stack[++top] = pi - 1;
         }
 
-        comparisons++;
         if(pi + 1 < right){
             stack[++top] = pi + 1;
             stack[++top] = right;
         }
     }
 }
-
 
 void Sort::stackSmartQuickSort(){
     int left = 0;
@@ -167,28 +146,23 @@ void Sort::stackSmartQuickSort(){
 
         int pi = partition(left, right);
 
-        comparisons++;
         if(pi - 1 - left < right - pi + 1){
-            comparisons++;
             if(pi - 1 > left){
                 stack[++top] = left;
                 stack[++top] = pi - 1;
             }
 
-            comparisons++;
             if(pi + 1 < right){
                 stack[++top] = pi + 1;
                 stack[++top] = right;
             }
         
         }else{
-            comparisons++;
             if(pi + 1 < right){
                 stack[++top] = pi + 1;
                 stack[++top] = right;
             }
 
-            comparisons++;
             if(pi - 1 > left){
                 stack[++top] = left;
                 stack[++top] = pi - 1;
@@ -197,20 +171,15 @@ void Sort::stackSmartQuickSort(){
     }
 
 }
-    
 
 void Sort::selectionQuickSort(int left, int right, int k){
 
     int i = left, j = right;
 
-    comparisons++;
     if(right - left <= k){
-        comparisons++;
         for(int i = left; i < right; i++){
             int min = i;
-            comparisons++;
             for(int j = i + 1; j <= right; j++){
-                comparisons += 2;
                 if(elements[j].key < elements[min].key)
                     min = j;
             }
@@ -219,35 +188,20 @@ void Sort::selectionQuickSort(int left, int right, int k){
         return;
     }
 
-    comparisons++;
-    Data pivot = elements[(left + right) / 2];
+    if(left < right){
+        int pi = partition(left, right);
 
-    comparisons++;
-    while(i <= j){
-        comparisons++;
-        while(elements[i].key < pivot.key)
-            i++;
-        comparisons++;
-        while(elements[j].key > pivot.key)
-            j--;
-        comparisons++;
-        if(i <= j){
-            swap(i, j);
-            i++;
-            j--;
+        if(pi > left){
+            selectionQuickSort(left, pi - 1, k);
+        }
+
+        if(pi < right){
+            selectionQuickSort(pi + 1, right, k);
         }
     }
-
-    comparisons++;
-    if(left < j)
-        selectionQuickSort(left, j, k);
-    comparisons++;
-    if(i < right)
-        selectionQuickSort(i, right, k);
 }
 
 void Sort::mergeSort(int left, int right){
-    comparisons++;
     if(left < right){
         int middle = (left + right) / 2;
         mergeSort(left, middle);
@@ -265,12 +219,10 @@ void Sort::merge(int left, int middle, int right){
     Data *R = new Data[n2];
 
     for(i = 0; i < n1; i++){
-        comparisons++;
         L[i] = elements[left + i];
         copies++;
     }
     for(j = 0; j < n2; j++){
-        comparisons++;
         R[j] = elements[middle + 1 + j];
         copies++;
     }
@@ -280,7 +232,7 @@ void Sort::merge(int left, int middle, int right){
     k = left;
 
     while(i < n1 && j < n2){
-        comparisons += 2;
+        comparisons++;
         if(L[i].key <= R[j].key){
             elements[k] = L[i];
             copies++;
@@ -294,7 +246,6 @@ void Sort::merge(int left, int middle, int right){
     }
 
     while(i < n1){
-        comparisons++;
         elements[k] = L[i];
         copies++;
         i++;
@@ -302,7 +253,6 @@ void Sort::merge(int left, int middle, int right){
     }
 
     while(j < n2){
-        comparisons++;
         elements[k] = R[j];
         copies++;
         j++;
@@ -318,10 +268,10 @@ void Sort::heapify(int n, int i){
     int l = 2 * i + 1;
     int r = 2 * i + 2;
 
-    comparisons += 2;
+    comparisons++;
     if(l < n && elements[l].key > elements[largest].key)
         largest = l;
-    comparisons += 2;
+    comparisons++;
     if(r < n && elements[r].key > elements[largest].key)
         largest = r;
     comparisons++;
@@ -334,14 +284,19 @@ void Sort::heapify(int n, int i){
 void Sort::heapSort(int n){
     for(int i = n / 2 - 1; i >= 0; i--){
         heapify(n, i);
-        comparisons++;
     }
     
     for(int i = n - 1; i >= 0; i--){
-        comparisons++;
         swap(0, i);
         heapify(i, 0);
     }
+}
+
+void Sort::printArrays(){
+    for(int i = 0; i < numberElements; i++){
+        std::cout << elements[i].key << std::endl;
+    }
+    std::cout <<std::endl;
 }
 
 

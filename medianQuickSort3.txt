@@ -1,0 +1,35 @@
+QuickSort Mediana com 1000 elementos e k = 3
+Número de comparações: 12566
+Número de cópias: 17904
+Tempo de execução: 0.005022
+
+QuickSort Mediana com 5000 elementos e k = 3
+Número de comparações: 81165
+Número de cópias: 126858
+Tempo de execução: 0.041716
+
+QuickSort Mediana com 10000 elementos e k = 3
+Número de comparações: 167255
+Número de cópias: 290043
+Tempo de execução: 0.078501
+
+QuickSort Mediana com 50000 elementos e k = 3
+Número de comparações: 975523
+Número de cópias: 1508880
+Tempo de execução: 0.42047
+
+QuickSort Mediana com 100000 elementos e k = 3
+Número de comparações: 2104538
+Número de cópias: 3240366
+Tempo de execução: 0.91828
+
+QuickSort Mediana com 500000 elementos e k = 3
+Número de comparações: 13053940
+Número de cópias: 18758436
+Tempo de execução: 5.4281
+
+QuickSort Mediana com 1000000 elementos e k = 3
+Número de comparações: 25579574
+Número de cópias: 42334887
+Tempo de execução: 12.3838
+

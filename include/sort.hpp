@@ -3,9 +3,9 @@
 
 #include <iostream>
 #include <fstream>
-#include <string.h>
 #include <sys/resource.h>
 #include <cmath>
+#include "memlog.hpp"
 #include "data.hpp"
 #include "msgassert.hpp"
 
@@ -17,8 +17,8 @@ private:
     long unsigned int numberElements;
     int seed;
     std::string output;
-    int comparisons;
-    int copies;
+    long long int comparisons;
+    long long int copies;
 
 public:
     Sort(int _seed = 1, int _numberElements = 1, std::string _output = "A");
@@ -39,6 +39,7 @@ public:
     int getNumberElements();
     int getComparisons();
     int getCopies();
+    void printArrays();
 
 };
 

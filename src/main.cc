@@ -3,25 +3,13 @@
 #include <cmath>
 #include "clock.hpp"
 
-int calculateMedian(int seed, int median, int tam){
-    
-    int sum = 0;
-
-    srand(seed);
-
-    for(int i = 0; i < median; i++){
-        sum += rand() % tam;
-    }
-
-    return std::trunc(sum/median);
-}
-
 int main(int argc, char *argv[]){
 
     int opt, type, seed, median, partition;
     std::string input, output;
+    bool mem = false;
 
-    while((opt = getopt(argc, argv, "v:s:k:m:i:o:")) != -1){
+    while((opt = getopt(argc, argv, "v:s:k:m:i:o:p:")) != -1){
         switch(opt){
             case 'v':
                 type = atoi(optarg);
@@ -41,6 +29,10 @@ int main(int argc, char *argv[]){
             case 'o':
                 output = optarg;
                 break;
+            case 'p':
+                iniciaMemLog(optarg);
+                ativaMemLog();
+                mem = true;
         }
     }
 
@@ -60,7 +52,6 @@ int main(int argc, char *argv[]){
         erroAssert(tam > 0, "Tamanho do array inválido");
         array = new Sort(seed, tam, output);
         array->randomArrays();
-        //int medianPivot = calculateMedian(seed, median, tam);
         
         switch(type){
             case 1:
@@ -91,6 +82,10 @@ int main(int argc, char *argv[]){
     }
 
     input_file.close();
+
+    if (mem) {
+        finalizaMemLog();
+    }
 
     return 0;
 }

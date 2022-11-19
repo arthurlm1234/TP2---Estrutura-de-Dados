@@ -1,0 +1,35 @@
+MergeSort com 1000 elementos 
+Número de comparações: 8681
+Número de cópias: 19952
+Tempo de execução: 0.013152
+
+MergeSort com 5000 elementos 
+Número de comparações: 55155
+Número de cópias: 123616
+Tempo de execução: 0.066231
+
+MergeSort com 10000 elementos 
+Número de comparações: 120423
+Número de cópias: 267232
+Tempo de execução: 0.11525
+
+MergeSort com 50000 elementos 
+Número de comparações: 718267
+Número de cópias: 1568928
+Tempo de execução: 0.808842
+
+MergeSort com 100000 elementos 
+Número de comparações: 1536497
+Número de cópias: 3337856
+Tempo de execução: 1.86442
+
+MergeSort com 500000 elementos 
+Número de comparações: 8836929
+Número de cópias: 18951424
+Tempo de execução: 12.4904
+
+MergeSort com 1000000 elementos 
+Número de comparações: 18674108
+Número de cópias: 39902848
+Tempo de execução: 29.0039
+
