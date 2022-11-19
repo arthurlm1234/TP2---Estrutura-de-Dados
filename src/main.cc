@@ -33,6 +33,7 @@ int main(int argc, char *argv[]){
                 iniciaMemLog(optarg);
                 ativaMemLog();
                 mem = true;
+                break;
         }
     }
 
@@ -83,10 +84,11 @@ int main(int argc, char *argv[]){
 
     input_file.close();
 
-    if (mem) {
+    if(mem){
+        desativaMemLog();
         finalizaMemLog();
     }
-
+    
     return 0;
 }
 

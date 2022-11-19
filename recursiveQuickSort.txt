@@ -1,10 +1,10 @@
 QuickSort Recursivo com 500 elementos 
 Número de comparações: 4822
 Número de cópias: 9369
-Tempo de execução: 0.012868
+Tempo de execução: 0.003619
 
 QuickSort Recursivo com 500 elementos 
 Número de comparações: 4822
 Número de cópias: 9369
-Tempo de execução: 0.012945
+Tempo de execução: 0.003566
 
