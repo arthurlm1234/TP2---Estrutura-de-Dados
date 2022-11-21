@@ -39,8 +39,6 @@ public:
     int getNumberElements();
     int getComparisons();
     int getCopies();
-    void printArrays();
-
 };
 
 #endif

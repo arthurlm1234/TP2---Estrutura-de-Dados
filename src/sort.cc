@@ -83,6 +83,7 @@ void Sort::medianQuickSort(int left, int right, int number){
 
 int Sort::partition(int left, int right){
 
+    LEMEMLOG((long int)((&elements[right])), sizeof(Data),0);
     Data pivot = elements[right];
     int j;
     j = left;
@@ -173,8 +174,6 @@ void Sort::stackSmartQuickSort(){
 }
 
 void Sort::selectionQuickSort(int left, int right, int k){
-
-    int i = left, j = right;
 
     if(right - left <= k){
         for(int i = left; i < right; i++){
@@ -291,14 +290,6 @@ void Sort::heapSort(int n){
         heapify(i, 0);
     }
 }
-
-void Sort::printArrays(){
-    for(int i = 0; i < numberElements; i++){
-        std::cout << elements[i].key << std::endl;
-    }
-    std::cout <<std::endl;
-}
-
 
 
 
